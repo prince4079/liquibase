@@ -1,6 +1,8 @@
 package com.liquibase.Example.liquibase.controller;
 import com.liquibase.Example.liquibase.entity.User;
 import com.liquibase.Example.liquibase.service.EmployeeService.java.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,5 +45,41 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
+    }
+
+    // 🔍 Search users
+    @GetMapping("/search")
+    public List<User> search(@RequestParam String keyword) {
+        return service.search(keyword);
+    }
+
+    // 📧 Get by email
+    @GetMapping("/email/{email}")
+    public User getByEmail(@PathVariable String email) {
+        return service.getByEmail(email);
+    }
+
+    // 🔢 Count users
+    @GetMapping("/count")
+    public long count() {
+        return service.countUsers();
+    }
+
+    // 📄 Pagination (only active users)
+    @GetMapping("/active")
+    public Page<User> getActiveUsers(Pageable pageable) {
+        return service.getActiveUsers(pageable);
+    }
+
+    // 🚫 Deactivate user
+    @PutMapping("/{id}/deactivate")
+    public User deactivate(@PathVariable Long id) {
+        return service.deactivateUser(id);
+    }
+
+    // ✅ Check email exists
+    @GetMapping("/exists")
+    public boolean exists(@RequestParam String email) {
+        return service.existsByEmail(email);
     }
 }
