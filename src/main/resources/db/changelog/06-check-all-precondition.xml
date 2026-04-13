@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="precon-01" author="prince">
+        <preConditions onFail="CONTINUE">
+            <tableExists tableName="employees"/>
+            <not><columnExists tableName="employees" columnName="department"/></not>
+        </preConditions>
+        <addColumn tableName="employees">
+            <column name="department" type="VARCHAR(100)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="precon-mark-ran-demo" author="prince">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="audit_logs"/></not>
+        </preConditions>
+        <createTable tableName="audit_logs">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="action" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="precon-warn-demo" author="prince">
+        <preConditions onFail="WARN">
+            <indexExists indexName="idx_employee_email" tableName="employees"/>
+        </preConditions>
+        <comment>Checking if index exists; will run even if check fails but logs a warning</comment>
+        <sql>-- Performance tuning or cleanup logic here</sql>
+    </changeSet>
+
+    <changeSet id="precon-03" author="prince">
+        <preConditions onFail="HALT">
+            <runningAs username="postgres"/>
+        </preConditions>
+        <sql>DROP TABLE IF EXISTS old_audit_logs;</sql>
+    </changeSet>
+
+</databaseChangeLog>

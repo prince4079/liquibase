@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <include file="db/changelog/01-init-employee.xml"/>
+    <include file="db/changelog/02-add-phone-to-employee.xml"/>
+    <include file="db/changelog/03-modify-employee-names.xml"/>
+    <include file="db/changelog/04-insert-sample-employees.xml"/>
+    <include file="db/changelog/05-run-sql-file.xml"/>
+    <include file="db/changelog/06-check-all-precondition.xml"/>
+    <include file="db/changelog/07-rollback-command.xml"/>
+
+
+</databaseChangeLog>
