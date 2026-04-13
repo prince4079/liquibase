@@ -13,6 +13,19 @@ public class User {
     private String fullName;
     private String email;
     private String phoneNumber;
+    private Boolean active = true;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
     // Getters & Setters
     public Long getId() { return id; }
