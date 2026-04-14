@@ -19,6 +19,10 @@ public class DepartmentController {
     // GET all
     @GetMapping
     public List<Department> findAll() {
+        System.out.println("print is added ");
+        System.out.println("print is added ");
+        System.out.println("print is added ");
+        System.out.println("print is added ");
         return service.getAll();
     }
 
