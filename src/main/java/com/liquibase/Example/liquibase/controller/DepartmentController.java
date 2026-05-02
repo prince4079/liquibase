@@ -1,4 +1,4 @@
-package com.liquibase.Example.liquibase.serviceImpl;
+package com.liquibase.Example.liquibase.controller;
 
 import com.liquibase.Example.liquibase.entity.Department;
 import com.liquibase.Example.liquibase.service.EmployeeService.java.DepartmentService;
